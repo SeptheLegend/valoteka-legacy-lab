@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 # Grant the permissions required by the Pages deploy step
 permissions:
@@ -28,6 +29,22 @@ jobs:
         run: npm ci --include=dev
       - name: Build
         run: npm run build
+      - name: Show built files
+        run: |
+          echo "Built files in dist:"
+          ls -la dist || true
+      - name: Check GitHub Pages enabled
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Checking if GitHub Pages is enabled for $GITHUB_REPOSITORY..."
+          status=$(curl -sS -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" https://api.github.com/repos/$GITHUB_REPOSITORY/pages || true)
+          if echo "$status" | grep -q '"message": "Not Found"'; then
+            echo "::error::GitHub Pages is not enabled for this repository. Please enable it at https://github.com/$GITHUB_REPOSITORY/settings/pages and set 'Build and deployment' → 'Source' to 'GitHub Actions'."
+            echo "$status"
+            exit 1
+          fi
+          echo "GitHub Pages appears configured."
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-artifact@v4
         with:
