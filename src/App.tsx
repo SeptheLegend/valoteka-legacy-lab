@@ -9,19 +9,25 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+import { BookingProvider } from '@/context/booking';
+import BookingModal from '@/components/sections/BookingModal';
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/demo" element={<Demo />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <BookingProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/demo" element={<Demo />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+        <BookingModal />
+      </TooltipProvider>
+    </BookingProvider>
   </QueryClientProvider>
 );
 

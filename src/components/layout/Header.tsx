@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useBooking } from '@/context/booking';
 
 export const Header = () => {
+  const booking = useBooking();
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -39,7 +41,7 @@ export const Header = () => {
           </nav>
 
           {/* CTA */}
-          <Button variant="gold" size="sm" className="hidden sm:inline-flex">
+          <Button variant="gold" size="sm" className="hidden sm:inline-flex" onClick={() => booking.openModal()}>
             Book a Demo
           </Button>
         </div>

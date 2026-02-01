@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Sparkles } from "lucide-react";
+import { useBooking } from '@/context/booking';
 
 export const HeroSection = () => {
   return (
@@ -68,14 +69,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button variant="hero" size="xl" className="group">
-              Book a 15-Min Value Assessment
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="hero-secondary" size="xl">
-              <Sparkles className="w-5 h-5" />
-              Watch Demo
-            </Button>
+            <HeroCTAs />
           </motion.div>
 
           {/* Trust indicators */}
