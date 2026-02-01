@@ -17,6 +17,12 @@ jobs:
         run: npm ci --include=dev
       - name: Build
         run: npm run build
+      - name: Smoke test build (serve & request /)
+        run: |
+          # serve dist using Python's simple HTTP server and verify root responds
+          nohup python3 -m http.server 8000 --directory dist >/dev/null 2>&1 &
+          sleep 1
+          curl -fS http://127.0.0.1:8000/ -o /dev/null
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
