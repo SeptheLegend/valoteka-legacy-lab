@@ -22,6 +22,8 @@ The only requirement is having Node.js & npm installed - [install with nvm](http
 
 Follow these steps:
 
+> Note: This project requires Node.js 18+.
+
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
@@ -30,11 +32,19 @@ git clone <YOUR_GIT_URL>
 cd <YOUR_PROJECT_NAME>
 
 # Step 3: Install the necessary dependencies.
+# If you plan to run the build in CI or locally, ensure devDependencies are installed:
+# npm ci --include=dev
+# For normal local development, you can use:
 npm i
 
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
+
+### Build & CI notes
+
+- The build requires devDependencies (e.g., Vite) to be available. If your environment installs only production deps, the build will fail with "vite: command not found".
+- In CI, run: `npm ci --include=dev` before `npm run build` (a sample GitHub Actions workflow is included in `.github/workflows/ci.yml`).
 
 **Edit a file directly in GitHub**
 
