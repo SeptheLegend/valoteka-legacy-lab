@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Sparkles } from "lucide-react";
 import { useBooking } from '@/context/booking';
+import HeroCTAs from './HeroCTAs';
 
 export const HeroSection = () => {
   return (
