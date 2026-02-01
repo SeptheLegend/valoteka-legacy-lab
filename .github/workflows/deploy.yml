@@ -22,10 +22,17 @@ jobs:
         run: npm ci --include=dev
       - name: Build
         run: npm run build
+      - name: Archive artifact for GitHub Pages
+        run: |
+          echo "Archiving dist to $RUNNER_TEMP/artifact.tar"
+          mkdir -p "$RUNNER_TEMP"
+          tar -czf "$RUNNER_TEMP/artifact.tar" -C dist .
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
-          path: ./dist
+          name: github-pages
+          path: $RUNNER_TEMP/artifact.tar
+          retention-days: 1
   deploy:
     needs: build-and-deploy
     runs-on: ubuntu-latest
