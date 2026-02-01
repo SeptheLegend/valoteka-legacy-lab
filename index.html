@@ -23,6 +23,51 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Dev-only error overlay for debugging white screen on localhost
+      (function () {
+        try {
+          var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+          if (!isLocal) return;
+          window.addEventListener('error', function (e) {
+            var body = document.body;
+            if (body) {
+              var pre = document.createElement('pre');
+              pre.style.background = 'rgba(0,0,0,0.85)';
+              pre.style.color = 'white';
+              pre.style.padding = '20px';
+              pre.style.whiteSpace = 'pre-wrap';
+              pre.style.zIndex = '99999';
+              pre.style.position = 'fixed';
+              pre.style.left = '10px';
+              pre.style.top = '10px';
+              pre.style.maxWidth = 'calc(100% - 20px)';
+              pre.textContent = 'Uncaught error: ' + (e && e.error && e.error.stack ? e.error.stack : e.message || String(e));
+              body.appendChild(pre);
+            }
+          });
+          window.addEventListener('unhandledrejection', function (e) {
+            var body = document.body;
+            if (body) {
+              var pre = document.createElement('pre');
+              pre.style.background = 'rgba(0,0,0,0.85)';
+              pre.style.color = 'white';
+              pre.style.padding = '20px';
+              pre.style.whiteSpace = 'pre-wrap';
+              pre.style.zIndex = '99999';
+              pre.style.position = 'fixed';
+              pre.style.left = '10px';
+              pre.style.top = '10px';
+              pre.style.maxWidth = 'calc(100% - 20px)';
+              pre.textContent = 'Unhandled rejection: ' + (e && e.reason && e.reason.stack ? e.reason.stack : String(e));
+              body.appendChild(pre);
+            }
+          });
+        } catch (e) {
+          // ignore
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

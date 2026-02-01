@@ -124,7 +124,7 @@ export const BookingForm: React.FC = () => {
               <FormControl>
                 <Input {...register('firstName')} aria-invalid={!!errors.firstName} />
               </FormControl>
-              <FormMessage>{errors.firstName?.message as any}</FormMessage>
+              <FormMessage>{errors.firstName?.message as string}</FormMessage>
             </FormItem>
 
             <FormItem>
@@ -132,7 +132,7 @@ export const BookingForm: React.FC = () => {
               <FormControl>
                 <Input {...register('email')} type="email" aria-invalid={!!errors.email} />
               </FormControl>
-              <FormMessage>{errors.email?.message as any}</FormMessage>
+              <FormMessage>{errors.email?.message as string}</FormMessage>
             </FormItem>
           </div>
 
@@ -141,7 +141,7 @@ export const BookingForm: React.FC = () => {
             <FormControl>
               <Input {...register('company')} />
             </FormControl>
-            <FormMessage>{errors.company?.message as any}</FormMessage>
+            <FormMessage>{errors.company?.message as string}</FormMessage>
           </FormItem>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -163,7 +163,7 @@ export const BookingForm: React.FC = () => {
                   )}
                 />
               </FormControl>
-              <FormMessage>{errors.date?.message as any}</FormMessage>
+              <FormMessage>{errors.date?.message as string}</FormMessage>
             </FormItem>
 
             <FormItem>
@@ -178,7 +178,7 @@ export const BookingForm: React.FC = () => {
                   ))}
                 </select>
               </FormControl>
-              <FormMessage>{errors.time?.message as any}</FormMessage>
+              <FormMessage>{errors.time?.message as string}</FormMessage>
             </FormItem>
           </div>
 
@@ -187,7 +187,7 @@ export const BookingForm: React.FC = () => {
             <FormControl>
               <Textarea {...register('notes')} rows={3} />
             </FormControl>
-            <FormMessage>{errors.notes?.message as any}</FormMessage>
+            <FormMessage>{errors.notes?.message as string}</FormMessage>
           </FormItem>
 
           {serverMessage && <p className="text-sm text-destructive">{serverMessage}</p>}
