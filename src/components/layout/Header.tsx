@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { useBooking } from '@/context/booking';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 
 export const Header = () => {
-  const booking = useBooking();
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -16,8 +21,8 @@ export const Header = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-charcoal flex items-center justify-center">
-              <span className="text-gold font-display font-bold text-lg">V</span>
+            <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center">
+              <span className="text-blue-600 font-display font-bold text-lg">V</span>
             </div>
             <span className="font-display text-xl font-semibold text-foreground tracking-tight">
               Valoteka
@@ -26,23 +31,36 @@ export const Header = () => {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#problem" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Why Valoteka
-            </a>
-            <a href="#solution" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <button
+              onClick={() => scrollToSection('problem')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              The Problem
+            </button>
+            <button
+              onClick={() => scrollToSection('solution')}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
               How It Works
+            </button>
+            <a
+              href="/privacy"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Privacy Policy
             </a>
-            <a href="#benefits" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Benefits
-            </a>
-            <Link to="/demo" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Live Demo
-            </Link>
           </nav>
 
           {/* CTA */}
-          <Button variant="gold" size="sm" className="hidden sm:inline-flex" onClick={() => booking.openModal()}>
-            Book a Demo
+          <Button
+            variant="default"
+            size="sm"
+            className="hidden sm:inline-flex"
+            onClick={() => {
+              document.getElementById('final-cta')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Join Early Access
           </Button>
         </div>
       </div>

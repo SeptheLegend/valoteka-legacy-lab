@@ -1,0 +1,29 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "env": {
+    "VITE_APP_URL": "@valoteka_app_url",
+    "VITE_ENVIRONMENT": "@valoteka_environment",
+    "VITE_ENABLE_ANALYTICS": "@valoteka_enable_analytics"
+  },
+  "functions": {
+    "api/early-access.ts": {
+      "memory": 1024,
+      "maxDuration": 30,
+      "includeFiles": "api/**"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "/api/:match*"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/contact",
+      "destination": "/?section=contact",
+      "permanent": true
+    }
+  ]
+}

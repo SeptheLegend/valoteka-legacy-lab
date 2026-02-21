@@ -3,31 +3,28 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ConsentProvider } from "@/context/consent";
 import Index from "./pages/Index";
-import Demo from "./pages/Demo";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-import { BookingProvider } from '@/context/booking';
-import BookingModal from '@/components/sections/BookingModal';
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <BookingProvider>
+    <ConsentProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/demo" element={<Demo />} />
+            <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-        <BookingModal />
       </TooltipProvider>
-    </BookingProvider>
+    </ConsentProvider>
   </QueryClientProvider>
 );
 

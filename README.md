@@ -1,22 +1,217 @@
-# Welcome to your Lovable project
+# Valoteka Landing Page & Early Access System
 
-## Project info
+Production-grade landing page for capturing early access signups for Valoteka's digital certificate infrastructure.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Quick Start
 
-## How can I edit this code?
+```bash
+# Install dependencies
+bun install
 
-There are several ways of editing your application.
+# Create environment file
+cp .env.example .env.local
 
-**Use Lovable**
+# Development server
+bun run dev
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+# Production build
+bun run build
+```
 
-Changes made via Lovable will be committed automatically to this repo.
+## Project Overview
 
-**Use your preferred IDE**
+Valoteka provides outsourced digital certificate infrastructure for WooCommerce and Shopify sellers. This landing page:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Converts** merchants into early access signups
+- **Explains** the problem (no certificate infrastructure)
+- **Demonstrates** the solution (3-step process)
+- **Builds trust** with GDPR compliance, 20-year storage, independent authority
+- **Captures leads** through early access form
+- **Validates** input server-side with rate limiting
+- **Sends emails** via Resend
+
+## Tech Stack
+
+- React 18 + TypeScript + Vite
+- Tailwind CSS + shadcn/ui components
+- React Hook Form + Zod validation
+- Vercel Serverless Functions
+- Resend for email delivery
+
+## Key Features
+
+✅ Mobile-first responsive design  
+✅ WCAG 2.1 AA accessibility  
+✅ Lighthouse 90+ performance  
+✅ GDPR compliance with consent  
+✅ Form validation (frontend + backend)  
+✅ Rate limiting (5/hour per IP+email)  
+✅ Honeypot bot protection  
+✅ Email confirmation (user + admin)  
+✅ SEO with OpenGraph & JSON-LD schema  
+✅ No demo booking (early access only)  
+
+## File Structure
+
+```
+src/
+├── components/
+│   ├── layout/ (Header, Footer, SEO)
+│   ├── sections/ (Hero, Problem, Solution, etc.)
+│   └── ui/ (shadcn/ui components)
+├── context/ (Consent management)
+├── hooks/ (Custom React hooks)
+├── lib/ (API clients, validation, utilities)
+├── pages/ (Index, Privacy, NotFound)
+├── types/ (TypeScript definitions)
+└── App.tsx (Root component)
+
+api/
+└── early-access.ts (Vercel serverless function)
+```
+
+## API Endpoint
+
+**POST** `/api/early-access`
+
+Request:
+```json
+{
+  "email": "merchant@example.com",
+  "company": "Example Store",
+  "merchantType": "shopify",
+  "productCategory": "Luxury watches",
+  "consent": true
+}
+```
+
+Response:
+```json
+{
+  "success": true,
+  "message": "Successfully joined early access...",
+  "id": "early-access-1708000000000-abc123"
+}
+```
+
+## Environment Setup
+
+Create `.env.local`:
+
+```
+VITE_RESEND_API_KEY=your_resend_api_key
+VITE_CONTACT_EMAIL=contact@valoteka.com
+VITE_SENDER_EMAIL=noreply@valoteka.com
+VITE_APP_URL=http://localhost:5173
+VITE_ENVIRONMENT=development
+VITE_ENABLE_ANALYTICS=true
+```
+
+## Deployment to Vercel
+
+1. **Push to GitHub** (or connect repo)
+2. **Import in Vercel**: https://vercel.com/new
+3. **Add environment variables** (see above)
+4. **Deploy** - Done!
+
+Full deployment guide: See `DEPLOYMENT.md`
+
+## Email Setup
+
+Requires Resend account:
+
+1. Create account at [resend.com](https://resend.com)
+2. Generate API key
+3. Verify sender domain (noreply@valoteka.com)
+4. Add key to environment variables
+
+## Performance
+
+Target metrics:
+- Lighthouse Score: **90+**
+- First Contentful Paint: **<1.5s**
+- Largest Contentful Paint: **<2.5s**
+- Cumulative Layout Shift: **<0.1**
+- Load time (3G): **<2s**
+
+Optimization techniques:
+- Code splitting via Vite
+- Lazy-loaded sections
+- Optimized images
+- Tree-shaken CSS
+- Minimal JavaScript
+
+## Security & Privacy
+
+✅ Server-side validation (Zod)  
+✅ Rate limiting (5 submissions/hour)  
+✅ GDPR consent checkbox  
+✅ Privacy policy included  
+✅ No cookies without consent  
+✅ Honeypot field for bots  
+✅ Email validation  
+✅ No sensitive data in URLs  
+
+## Accessibility
+
+WCAG 2.1 AA compliant:
+- Semantic HTML5
+- Proper heading hierarchy
+- ARIA labels on forms
+- Color contrast ratios
+- Keyboard navigation
+- Screen reader support
+
+## Analytics
+
+Tracks early access events:
+- Form submissions
+- Form success/failure
+- Conversion tracking
+
+Ready for Google Analytics integration.
+
+## Development
+
+```bash
+# Format code
+bun run lint
+
+# View build analysis
+bun run build
+
+# Preview production build
+bun run preview
+```
+
+## Content
+
+- **Hero**: "Outsource Your Certificate Infrastructure. Forever."
+- **Problem**: Certificate infrastructure gaps for merchants
+- **Solution**: 3-step process with visual diagram
+- **Case Study**: Hypothetical luxury watch example (clearly marked)
+- **Trust Signals**: 20-year storage, GDPR, independent authority
+- **Heart Section**: Why Valoteka exists (brand story)
+- **Final CTA**: Early access form (primary conversion)
+
+No fake statistics. No hype language. Enterprise tone.
+
+## Future Enhancements
+
+- CMS integration (Sanity)
+- Real case studies
+- Email campaigns (HubSpot)
+- A/B testing
+- Analytics dashboard
+- Customer portal
+
+## Support
+
+Email: contact@valoteka.com
+
+---
+
+© 2026 Valoteka. All rights reserved.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
