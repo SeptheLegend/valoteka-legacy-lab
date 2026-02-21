@@ -2,7 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "env": {
-    "VITE_APP_URL": "@valoteka_app_url",
     "VITE_ENVIRONMENT": "@valoteka_environment",
     "VITE_ENABLE_ANALYTICS": "@valoteka_enable_analytics"
   },
